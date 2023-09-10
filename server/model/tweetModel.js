@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const tweetSchema = new mongoose.Schema({
-  creator: {
+  user: {
     type: mongoose.Schema.ObjectId,
     ref: 'User'
   },

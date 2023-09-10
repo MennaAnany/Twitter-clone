@@ -25,6 +25,9 @@ export const Div = styled.div`
 
 export const SearchbarDiv = styled.div`
   padding: 1.5rem;
+  /* @media (max-width: 1024px) {
+    display: none;
+  } */
 `;
 
 export const Form = styled.div`

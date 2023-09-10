@@ -1,10 +1,20 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { BsStars } from "react-icons/bs";
+import { Grid } from "@mui/material";
+
+export const Gridd = styled(Grid)`
+  @media (max-width: 700px) {
+    width: 100%;
+  }
+`;
 
 export const Icon = styled(BsStars)`
   font-size: 3rem;
   color: ${({ theme }) => theme.themeColors.color};
+  @media (max-width: 700px) {
+    font-size: 2rem;
+  }
 `;
 
 export const Div = styled.div`
@@ -35,5 +45,9 @@ export const P = styled.p(
   color: ${theme.colors.textPrimary};
   font-family: "Roboto";
   font-weight: 900;     
+
+  @media (max-width: 700px) {
+    font-size: 1.5rem;
+  }
 `
 );

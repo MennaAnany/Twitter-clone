@@ -1,9 +1,9 @@
-import { Li, P, Links } from "../Sidebar/SidebarStyle";
+import { Li, P, Links, Span } from "../Sidebar/SidebarStyle";
 const SidebarItem = (props) => {
   return (
     <Li>
       <Links to={props.to}>
-        <span> {props.icon}</span>
+        <Span> {props.icon}</Span>
         <P>{props.text}</P>
       </Links>
     </Li>

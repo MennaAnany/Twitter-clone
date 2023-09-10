@@ -84,9 +84,11 @@ export const TweetButton = styled.button`
   font-weight: 700;
   font-size: 1.6rem;
   cursor: pointer;
-  margin-left: 0.8rem;
   &:disabled {
     opacity: 0.3;
+  }
+  @media (max-width: 700px) {
+    font-size: 1.2rem;
   }
 `;
 export const TextArea = styled(TextareaAutosize)`
@@ -103,17 +105,23 @@ export const TextArea = styled(TextareaAutosize)`
   font-family: inherit;
   resize: none;
   overflow: hidden;
+
+  @media (max-width: 700px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export const IconButton = styled.div`
   padding: 0.8rem;
   font-size: 2.3rem;
   display: flex;
-  justify-content: center;
   transition: all 0.5s;
   cursor: pointer;
   &:hover {
     background-color: ${({ theme }) => theme.themeColors.hover};
     border-radius: 50%;
+  }
+  @media (max-width: 700px) {
+    font-size: 1.8rem;
   }
 `;

@@ -13,20 +13,21 @@ import Profile from "./pages/Profile/Profile";
 import Container from "@mui/material/Container";
 import styled from "styled-components";
 import Layout from "./components/Layout/Layout";
-
+import DisplayModal from "./components/DisplayModal/DisplayModal";
 const Div = styled.div`
   background-color: ${({ theme }) => theme.colors.bgPrimary};
+  min-height: 100vh;
 `;
 
 const router = createBrowserRouter([
-  // {
-  //   path: "/signup",
-  //   element: <Signup />,
-  // },
-  // {
-  //   path: "/signin",
-  //   element: <Signin />,
-  // },
+  {
+    path: "/signup",
+    element: <Signup />,
+  },
+  {
+    path: "/signin",
+    element: <Signin />,
+  },
   {
     element: <Layout />,
     children: [
@@ -38,19 +39,27 @@ const router = createBrowserRouter([
         path: "/notifications",
         element: <Notifications />,
       },
-      // {
-      //   path: "/profile",
-      //   element: <Profile />,
-      // },
+      {
+        path: "/profile",
+        element: <Profile />,
+      },
+      {
+        path: "/display",
+        element: <DisplayModal />,
+      },
     ],
   },
 ]);
 
+const Containerr = styled(Container)`
+  background-color: ${({ theme }) => theme.colors.bgPrimary};
+`;
+
 const Router = () => (
   <Div>
-    <Container fixed>
+    <Containerr>
       <RouterProvider router={router} />
-    </Container>
+    </Containerr>
   </Div>
 );
 

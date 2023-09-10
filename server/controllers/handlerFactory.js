@@ -1,5 +1,5 @@
 const catchAsync = require('../utils/catchAsync');
-const AppError = require('../utils/appError');
+const AppError = require('../utils/AppError');
 // const APIFeatures = require('./../utils/apiFeatures');
 
 exports.deleteOne = Model =>
@@ -37,7 +37,6 @@ exports.updateOne = Model =>
 
 exports.getOne = Model =>
   catchAsync(async (req, res, next) => {
-    // let query = Model.findById(req.params.username);
     let query = Model.findOne({ username: req.params.username });
     const doc = await query;
 

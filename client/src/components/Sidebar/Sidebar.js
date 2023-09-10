@@ -26,35 +26,19 @@ const Sidebar = () => {
     <React.Fragment>
       <Nav>
         <Ul>
-          <SidebarItem to="/home" icon={<BsTwitter size={26} />} />
-          <SidebarItem
-            to="/home"
-            icon={<AiOutlineHome size={26} />}
-            text={"Home"}
-          />
-          <SidebarItem
-            to="/explore"
-            icon={<RiHashtag size={26} />}
-            text={"Explore"}
-          />
+          <SidebarItem to="/home" icon={<BsTwitter />} />
+          <SidebarItem to="/home" icon={<AiOutlineHome />} text={"Home"} />
+          <SidebarItem to="/home" icon={<RiHashtag />} text={"Explore"} />
           <SidebarItem
             to="/notifications"
-            icon={<IoMdNotificationsOutline size={26} />}
+            icon={<IoMdNotificationsOutline />}
             text={"Notifications"}
           />
+          <SidebarItem to="/home" icon={<FiMail />} text={"Messages"} />
+          <SidebarItem to="/home" icon={<FaRegBookmark />} text={"Bookmarks"} />
           <SidebarItem
-            to="/messages"
-            icon={<FiMail size={26} />}
-            text={"Messages"}
-          />
-          <SidebarItem
-            to="/bookmarks"
-            icon={<FaRegBookmark size={26} />}
-            text={"Bookmarks"}
-          />
-          <SidebarItem
-            to="/lists"
-            icon={<AiOutlineUnorderedList size={26} />}
+            to="/home"
+            icon={<AiOutlineUnorderedList />}
             text={"Lists"}
           />
 

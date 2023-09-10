@@ -3,36 +3,25 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Searchbar from "../../components/Searchbar/Searchbar";
 import Trends from "../../components/Trends/Trends";
 import Suggested from "../../components/Suggested/Suggested";
-import styled from "styled-components";
-import React from "react";
 import { Grid } from "@mui/material";
+import React from "react";
 import { BorderRight } from "../../pages/Home/HomeStyle";
-
-// const Main = styled.div`
-//   display: flex;
-//   justify-content: space-between;
-// `;
-
-const Div = styled.div`
-  display: flex;
-`;
+import { Div, Grid2 } from "./LayoutStyle";
 
 const Layout = () => {
   return (
     <>
       <Div>
-        <Grid container>
-          <Grid>
-            <Sidebar />
-          </Grid>
+        <Grid>
+          <Sidebar />
         </Grid>
         <Outlet />
         <BorderRight />
-        <Grid>
+        <Grid2>
           <Searchbar />
           <Trends />
           <Suggested />
-        </Grid>
+        </Grid2>
       </Div>
     </>
   );

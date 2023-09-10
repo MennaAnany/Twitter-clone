@@ -54,15 +54,25 @@ export const P = styled.p`
       : props.theme.colors.textPrimary};
   font-size: 1.3rem;
   margin-bottom: 0.5rem;
+
+  @media (max-width: 1024px) {
+    font-size: 1rem;
+  }
 `;
 export const Span = styled.span`
   color: ${({ theme }) => theme.colors.textPrimary};
   font-size: 1.6rem;
   font-weight: 700;
+  @media (max-width: 1024px) {
+    font-size: 1.3rem;
+  }
 `;
 export const Spann = styled.span`
   color: ${({ theme }) => theme.colors.textSecondry};
   font-size: 1.3rem;
+  @media (max-width: 1024px) {
+    font-size: 1rem;
+  }
 `;
 
 export const Border = styled.div`

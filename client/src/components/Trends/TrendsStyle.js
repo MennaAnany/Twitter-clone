@@ -17,6 +17,10 @@ export const Div = styled.div`
   margin-left: ${(props) => (props.header ? "" : "4rem")};
   overflow: hidden;
   width: 31.5rem;
+
+  /* @media (max-width: 1024px) {
+    display: none;
+  } */
 `;
 
 export const H4 = styled.h4`

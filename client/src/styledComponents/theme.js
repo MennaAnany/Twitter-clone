@@ -1,4 +1,5 @@
 export const LIGHT_MODE = {
+  name: "☀️ Light Theme",
   bgPrimary: "#FFFFFF",
   textPrimary: "#14171A",
   textSecondry: "#97A4AF",
@@ -8,6 +9,7 @@ export const LIGHT_MODE = {
 };
 
 export const DARK_MODE = {
+  name: " dark Theme",
   bgPrimary: "#000000",
   textPrimary: "#D9D9D9",
   textSecondry: "#646C72",

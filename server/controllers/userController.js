@@ -1,9 +1,9 @@
 const catchAsync = require('../utils/catchAsync');
-const User = require('../server/model/userModel');
+const User = require('../model/userModel');
 const factory = require('./handlerFactory');
 const multer = require('multer');
 // const cloudinary = require('cloudinary');
-const cloudinary = require('../server/cloudinary');
+const cloudinary = require('../cloudinary');
 const sharp = require('sharp');
 
 const multerStorage = multer.memoryStorage();

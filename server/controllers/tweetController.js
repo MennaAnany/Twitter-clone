@@ -1,9 +1,9 @@
 const multer = require('multer');
-const cloudinary = require('../server/cloudinary');
+const cloudinary = require('../cloudinary');
 const catchAsync = require('../utils/catchAsync');
-const Tweet = require('../server/model/tweetModel');
-const User = require('../server/model/userModel');
-const AppError = require('../utils/appError');
+const Tweet = require('../model/tweetModel');
+const User = require('../model/userModel');
+const AppError = require('../utils/AppError');
 const factory = require('./handlerFactory');
 
 const multerStorage = multer.diskStorage({
@@ -45,12 +45,10 @@ exports.createTweet = catchAsync(async (req, res, next) => {
   }
 
   let newTweet = await Tweet.create(obj);
-  // newTweet = { ...newTweet._doc, user: req.user };
   newTweet.content = newTweet._doc.content;
   newTweet.created = newTweet._doc.created;
   newTweet.photo = newTweet._doc.photo;
   newTweet.creator = req.user;
-  // console.log(newTweet.creator);
 
   res.status(200).json({
     status: 'success',
@@ -60,9 +58,25 @@ exports.createTweet = catchAsync(async (req, res, next) => {
   });
 });
 
-// exports.getTweets = catchAsync(async (req, res, next) => {
-// });
+exports.getAllTweets = catchAsync(async (req, res, next) => {
+  const filter = {};
+  if (req.params.username) {
+    const user = await User.findOne({ username: req.params.username });
+    filter.user = user._id;
+  }
+
+  const tweets = await Tweet.find(filter)
+    .sort('-createdAt')
+    .populate({ path: 'user' });
+
+  res.status(200).json({
+    status: 'success',
+    results: tweets.length,
+    data: {
+      data: tweets
+    }
+  });
+});
 
 // exports.getTweet = factory.getOne(Tweet);
-exports.getAllTweets = factory.getAll(Tweet);
 exports.deleteTweet = factory.deleteOne(Tweet);

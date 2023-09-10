@@ -10,6 +10,7 @@ const Input = (props) => {
       ref={props.refrence}
       defaultValue={props.defaultValue}
       onChange={props.onChange}
+      style={props.style}
     />
   );
 };

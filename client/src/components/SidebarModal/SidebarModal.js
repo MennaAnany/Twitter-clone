@@ -18,8 +18,7 @@ import {
   Span,
 } from "./SidebarModalStyle";
 import Container from "../container/Container";
-
-const SidebarModal = (props) => {
+const SidebarModal = () => {
   return (
     <React.Fragment>
       <SidebarOptions>

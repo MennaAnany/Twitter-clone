@@ -5,12 +5,11 @@ export const Li = styled.li(
   ({ theme }) => `
   color: ${theme.colors.textPrimary};
   list-style: none;
-  padding: 0.8rem 1.7rem;
+  padding: 0.8rem ; 
   border-radius: 3.5rem;
-  margin-bottom: 1.4rem;
+  margin-bottom: 1.2rem;
   outline: none;
   cursor: pointer;
-
 
   &:hover {
     background-color:${theme.themeColors.hover};
@@ -20,21 +19,26 @@ export const Li = styled.li(
   &:last-child {
     background: none;
     list-style: none;
-
-
+    @media (max-width: 1024px) {
+      font-size: 4.5rem;
+      padding: 1rem;
+    }
+    
   }
   &:first-child  {
     background: none;
-    padding: 0.8rem;
-
+    padding: 0.5rem 0.2rem;
     margin-left: 1rem;
     color: ${({ theme }) => theme.colors.textPrimary};
-    
-    &:hover {
-      background-color:${theme.themeColors.hover};
-      border-radius: 50%;
+    @media (max-width: 1024px) {
+      margin-left: 0.2rem;
     }
+    
 }
+@media (max-width: 1024px) {
+  padding: 0.3rem ;
+}
+
 `
 );
 
@@ -44,9 +48,10 @@ export const Button = styled.button(
   background-color: ${theme.themeColors.color};
   outline: none;
   border: none;
-  padding: 1.5rem 7.8rem;
+  padding: 1.5rem 7rem;
   border-radius: 3.5rem;
   cursor: pointer;
+  transition: all 0.4s;
   h4 {
     font-size: 1.4rem;
     font-weight: 700;
@@ -54,6 +59,25 @@ export const Button = styled.button(
   svg {
     display: none;
   }
+  
+  @media (max-width: 1024px) {
+    position: relative;
+    left: -1rem;
+    padding: 0.2rem;
+    border-radius: 50%;
+
+    h4 {
+      display: none;
+     
+    }
+    svg {
+      display: block;
+      padding: 1rem;
+
+    }
+  }
+
+
 `
 );
 
@@ -65,13 +89,17 @@ export const Links = styled(Link)`
   justify-content: space-between;
   align-items: center;
   font-weight: 700;
+  &:focus {
+    color: ${({ theme }) => theme.themeColors.color};
+  }
 `;
 
 export const Nav = styled.nav`
-  padding: 1rem;
+  padding: 0.5rem;
   height: 100vh;
-  position: fixed;
   border-right: 1px solid rgba(204, 204, 204, 0.2);
+  position: relative;
+  margin-bottom: -100vh;
 `;
 
 export const Ul = styled.ul`
@@ -84,11 +112,34 @@ export const Img = styled.img`
   width: 2.3rem;
   height: 2.3rem;
   border-radius: 50%;
+  @media (max-width: 1024px) {
+    font-size: 4.5rem;
+    padding: 0.2rem;
+  }
+  /* @media (max-width: 700px) {
+    font-size: 2.4rem;
+  } */
 `;
 
 export const P = styled.p`
   font-size: 1.8rem;
   margin-left: 2.5rem;
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
+`;
+
+export const Span = styled.p`
+  font-size: 2.6rem;
+
+  @media (max-width: 1024px) {
+    font-size: 2.4rem;
+    padding: 0.2rem;
+  }
+  /* @media (max-width: 700px) {
+
+  } */
 `;
 
 export const Btn = styled.button`
@@ -101,5 +152,9 @@ export const Btn = styled.button`
   color: ${({ theme }) => theme.colors.textPrimary};
   &:hover {
     color: ${({ theme }) => theme.themeColors.color};
+  }
+  @media (max-width: 1024px) {
+    font-size: 2.4rem;
+    padding: 0.2rem;
   }
 `;

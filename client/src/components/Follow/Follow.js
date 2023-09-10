@@ -1,6 +1,6 @@
 import React from "react";
 import FollowItem from "../FollowItem/FollowItem";
-import { Div, H4, DivButton, Button, Followw, Border } from "./FollowStyle";
+import { Div, H4, Button, Followw, Border } from "./FollowStyle";
 
 import user from "../../img/Viper_icon.webp";
 import user2 from "../../img/Reyna_icon.webp";

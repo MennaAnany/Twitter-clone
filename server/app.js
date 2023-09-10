@@ -1,34 +1,36 @@
 const express = require('express');
-// const cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 // const morgan = require('morgan');
 // const AppError = require('./utils/appError');
-
-const userRouter = require('../routes/userRouter');
-const tweetRouter = require('../routes/tweetRouter');
-// const reviewRouter = require('./routes/reviewRoutes');
-// const bookingRouter = require('./routes/bookingRoutes');
+const globalErrorHandler = require('./controllers/errorController');
+const xss = require('xss-clean');
+const userRouter = require('../server/routes/userRouter');
+const tweetRouter = require('../server/routes/tweetRouter');
 
 // const rateLimit = require('express-rate-limit');
 // const helmet = require('helmet');
-// const mongoSanitize = require('express-mongo-sanitize');
-// const xss = require('xss-clean');
+const mongoSanitize = require('express-mongo-sanitize');
+
 // const hpp = require('hpp');
 // const compression = require('compression');
-
-// const cors = require('cors');
-
 const app = express();
+app.enable('trust proxy');
+const cors = require('cors');
+
+// Implement CORS
+if (process.env.NODE_ENV === 'development') {
+  app.use(cors({ origin: 'http://localhost:3001', credentials: true }));
+} else {
+  app.use(cors({ credentials: true }));
+}
 
 // app.set('view engine', 'pug');
 // app.set('views', path.join(__dirname, 'views'));
 
 // // 1) Global Middlewares
 
-// // Implement CORS
-// app.use(cors());
-
 // // for complex routes
-// app.options('*', cors());
+app.options('*', cors());
 
 // // Serving static files
 // app.use(express.static(path.join(__dirname, 'puplic')));
@@ -44,7 +46,7 @@ const app = express();
 // Body parser, reading data from body into req.body
 // app.use(express.json({ limit: '10kb' }));
 // app.use(express.urlencoded({ extended: true, limit: '10kb' }));
-// app.use(cookieParser());
+app.use(cookieParser());
 
 // // limits the requests from the same IP address to avoid BRUTE FORCE ATTACKS
 // const limiter = rateLimit({
@@ -60,10 +62,10 @@ const app = express();
 app.use(express.json()); //middleware
 
 // // Data sanitization against NoSQL query injection(against any unwanted symbols as $ (for logging in without email))
-// app.use(mongoSanitize());
+app.use(mongoSanitize());
 
-// // Data sanitization against XSS (against any malicious html code)
-// app.use(xss());
+// Data sanitization against XSS (against any malicious html code)
+app.use(xss());
 
 // // Prevent6 parameter pollution
 // app.use(
@@ -81,11 +83,8 @@ app.use(express.json()); //middleware
 
 // app.use(compression());
 
-// app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/tweets', tweetRouter);
-// app.use('/api/v1/reviews', reviewRouter);
-// app.use('/api/v1/bookings', bookingRouter);
 
 // Handling un-handled routes
 // ('*') : for any url
@@ -93,7 +92,7 @@ app.use('/api/v1/tweets', tweetRouter);
 //   next(new AppError(`Cant find ${req.originalUrl} on this server!`, 404));
 // });
 
-// ERROR HANDLING MIDDLEWARE
-// app.use(globalErrorHandler);
+// ERROR HANDLING MIDDLEWARE (handling error controller)
+app.use(globalErrorHandler);
 
 module.exports = app;

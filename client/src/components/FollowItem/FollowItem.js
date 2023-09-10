@@ -1,5 +1,5 @@
 import React from "react";
-import { Div, P, Button, Image, Btn, Border, Span } from "./FollowItemStyle";
+import { Div, P, Button, Image, Border, Span } from "./FollowItemStyle";
 
 const FollowItem = (props) => {
   return (

@@ -5,9 +5,17 @@ export const Span = styled.div(
   ({ theme }) => `
   background-color: ${theme.colors.bgPrimary};
   box-shadow: 4px 3px 20px 5px ${theme.colors.shadowColor};
-  width: 24.5rem;
+  margin-left:-2rem;
+  width: 22rem;
   border-radius: 0.9rem;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 100;
+
+  @media (max-width: 1024px) {
+    width: 20rem;
+  }
+  
 `
 );
 
@@ -28,6 +36,10 @@ export const Ul = styled.ul(
   &:hover {
     background-color: ${theme.colors.bgHover};
   }
+  @media (max-width: 1024px) {
+    padding: 1.5rem;
+  }
+  
 `
 );
 
@@ -36,6 +48,10 @@ export const Li = styled.li`
   font-family: "Roboto", "sans-serif";
   font-size: 1.7rem;
   list-style: none;
+
+  @media (max-width: 1024px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export const DivPhoto = styled.div`
@@ -62,6 +78,9 @@ export const P = styled.p(
   
   margin-top: 0.4rem;
   font-size: 1.7rem;
+  @media (max-width: 1024px) {
+    font-size: 1.4rem;
+  }
 `
 );
 

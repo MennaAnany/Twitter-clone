@@ -1,33 +1,26 @@
 import styled from "styled-components";
 
 export const Notificationss = styled.div`
-  min-height: 100vh;
   cursor: pointer;
-  overflow: hidden;
-  background-color: ${({ theme }) => theme.colors.bgPrimary};
 `;
 
-export const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-`;
 export const Icon = styled.div`
   svg {
     color: ${({ theme }) => theme.themeColors.color};
   }
-`;
-
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
+  font-size: 2rem;
+  @media (max-width: 1024px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export const H4 = styled.h4`
   color: ${({ theme }) => theme.colors.textPrimary};
   font-size: 2rem;
   font-weight: 900;
+  @media (max-width: 700px) {
+    font-size: 1.5rem;
+  }
 `;
 export const Div = styled.div`
   padding: 0.9rem;
@@ -40,6 +33,9 @@ export const Div = styled.div`
 
   &:hover {
     background-color: ${({ theme }) => theme.themeColors.hover};
+  }
+  @media (max-width: 700px) {
+    padding: 0.1rem;
   }
 `;
 export const DivHeader = styled.div`

@@ -1,13 +1,11 @@
-import { Grid } from "@mui/material";
-
-import { Div, Links, Border, P, Icon } from "./HomeStyle";
-
+import { Div, Links, Border, P, Icon, Gridd } from "./HomeStyle";
 import AddTweet from "../../components/AddTweet/AddTweet";
+import Tweet from "../../components/Tweets/Tweets";
 
 const Home = () => {
   return (
-    <Grid container xs={27.7}>
-      <Grid item xs={12}>
+    <Gridd container>
+      <Gridd item xs={27}>
         <Div>
           <Links to="/home">
             <P>Home</P>
@@ -16,9 +14,9 @@ const Home = () => {
         </Div>
         <Border />
         <AddTweet />
-        <Border />
-      </Grid>
-    </Grid>
+        <Tweet />
+      </Gridd>
+    </Gridd>
   );
 };
 
