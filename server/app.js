@@ -1,6 +1,6 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
-// const morgan = require('morgan');
+const morgan = require('morgan');
 // const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const xss = require('xss-clean');
@@ -26,9 +26,6 @@ if (process.env.NODE_ENV === 'development') {
   app.use(cors({ credentials: true }));
 }
 
-// app.set('view engine', 'pug');
-// app.set('views', path.join(__dirname, 'views'));
-
 // // 1) Global Middlewares
 
 // // for complex routes
@@ -41,9 +38,9 @@ app.options('*', cors());
 // app.use(helmet());
 
 // // Development logging
-// if (process.env.NODE_ENV === 'development') {
-//   app.use(morgan('dev'));
-// }
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
 
 // Body parser, reading data from body into req.body
 // app.use(express.json({ limit: '10kb' }));
@@ -93,7 +90,7 @@ app.use('/api/v1/users', userRouter);
 app.use('/api/v1/tweets', tweetRouter);
 
 app.all('*', (req, res, next) => {
-  res.sendFile(`${__dirname}/build/index.html`);
+  res.sendFile(`${__dirname}/build/server.html`);
 });
 
 // ERROR HANDLING MIDDLEWARE (handling error controller)
