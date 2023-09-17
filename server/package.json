@@ -4,9 +4,7 @@
   "description": "twitter clone",
   "main": "app.js",
   "scripts": {
-    "start": "node server.js",
-    "build": "npm i",
-    "dev": "nodemon server.js",
+    "start": "nodemon server.js",
     "start:prod": "cross-env NODE_ENV=production nodemon server.js"
   },
   "author": "menna",
@@ -42,8 +40,5 @@
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.4",
     "prettier": "^1.17.0"
-  },
-  "engines": {
-    "node": "^10"
   }
 }
