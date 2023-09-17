@@ -6,13 +6,24 @@ import { FiMail, FiMoreHorizontal } from "react-icons/fi";
 import { IoMdNotificationsOutline, IoIosAdd } from "react-icons/io";
 import SidebarModal from "../SidebarModal/SidebarModal";
 import { BsTwitter } from "react-icons/bs";
-import { Li, Button, P, Img, Btn, Ul, Nav, Links } from "./SidebarStyle";
+import {
+  Li,
+  Button,
+  P,
+  Img,
+  Btn,
+  Ul,
+  Nav,
+  Links,
+  Border,
+} from "./SidebarStyle";
 import Backdrop from "@mui/material/Backdrop";
 import SidebarItem from "../SidebarItem/SidebarItem";
-import userImage from "../../img/Viper_icon.webp";
+import { useUserStore } from "../../UserStore";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const currentUser = useUserStore((state) => state.user);
 
   const showModal = () => {
     setIsOpen(true);
@@ -43,8 +54,8 @@ const Sidebar = () => {
           />
 
           <Li>
-            <Links to={`/profile`}>
-              <Img alt="user" src={userImage} />
+            <Links to={`/users/${currentUser.username}`}>
+              <Img alt="user" src={currentUser.photo} />
               <P>Profile</P>
             </Links>
           </Li>
@@ -67,6 +78,8 @@ const Sidebar = () => {
           sx={{ bgcolor: "Transparent" }}
         ></Backdrop>
       </Nav>
+      <Border />
+
       {isOpen ? <SidebarModal showModal={showModal} /> : null}
     </React.Fragment>
   );

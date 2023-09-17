@@ -3,6 +3,7 @@ import { Grid } from "@mui/material";
 
 export const Div = styled.div`
   display: flex;
+  justify-content: space-around;
 `;
 
 export const Grid2 = styled(Grid)`

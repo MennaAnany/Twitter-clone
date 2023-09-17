@@ -15,34 +15,64 @@ import {
   Bio,
   Input,
 } from "./UserHeaderStyle";
-import userImage2 from "../../img/Viper_icon.webp";
-import userCover from "../../img/default-cover.jpg";
+import { useUserStore } from "../../UserStore";
 
 const UserHeader = {
   DefaultUserHeader: (props) => {
+    const currentUser = useUserStore((state) => state.user);
+    const { username, EditProfile, user } = props;
+
     return (
       <div>
         <Cover>
-          <img src={userCover} alt="user cover" />
+          <img
+            src={
+              username === currentUser.username ? currentUser.cover : user.cover
+            }
+            alt="cover"
+          />
         </Cover>
+
         <Photo>
           <Image>
-            <img alt="user" src={userImage2} />
+            <img
+              alt="user"
+              src={
+                username === currentUser.username
+                  ? currentUser.photo
+                  : user.photo
+              }
+            />
           </Image>
-          <Button main onClick={props.EditProfile}>
-            Edit Profile
-          </Button>
+
+          {username === currentUser.username ? (
+            <Button main="true" onClick={EditProfile}>
+              Edit Profile
+            </Button>
+          ) : (
+            ""
+          )}
         </Photo>
-        <Info>
-          <P>viper</P>
-          <P secondary>@Viper_valorant</P>
-          <Bio>Welcome to my profile.</Bio>
-        </Info>
+        {username === currentUser.username ? (
+          <Info>
+            <P>{currentUser.name}</P>
+            <P secondary="true">{currentUser.email}</P>
+            <Bio>{currentUser.bio}</Bio>
+          </Info>
+        ) : (
+          <Info>
+            <P>{props.user.name}</P>
+            <P secondary>{props.user.email}</P>
+            <Bio>{props.user.bio}</Bio>
+          </Info>
+        )}
       </div>
     );
   },
 
   EditUserHeader: (props) => {
+    const currentUser = useUserStore((state) => state.user);
+
     const {
       user,
       username,
@@ -59,7 +89,6 @@ const UserHeader = {
       emailRef,
       bioRef,
     } = props;
-    // const userSelf = useSelector((state) => state.user.user.username);
 
     return (
       <div>
@@ -70,7 +99,10 @@ const UserHeader = {
               <ImageIcon>
                 <FiCamera />
               </ImageIcon>
-              <img src={coverImage ? coverImage : userCover} alt="user cover" />
+              <img
+                src={coverImage ? coverImage : currentUser.cover}
+                alt="coverImage"
+              />
             </label>
           </Label>
         </Cover>
@@ -82,25 +114,32 @@ const UserHeader = {
                 <ImageIcon2>
                   <FiCamera />
                 </ImageIcon2>
-                <img src={userImage ? userImage : userImage2} alt="user" />
+                <img
+                  src={userImage ? userImage : currentUser.photo}
+                  alt="user"
+                />
               </label>
             </Label>
           </Image>
-          <div>
-            <Button main onClick={closeEdit}>
-              cancel
-            </Button>
-            <Button onClick={saveEdit}>save</Button>
-          </div>
+          {username === currentUser.username ? (
+            <div>
+              <Button main="true" onClick={closeEdit}>
+                cancel
+              </Button>
+              <Button onClick={saveEdit}>save</Button>
+            </div>
+          ) : (
+            ""
+          )}
         </Photo>
         <Inputs>
           <Input
             onChange={nameChange}
             ref={nameRef}
             type="text"
-            placeholder="Your Name"
+            placeholder="Your name"
             name="name"
-            defaultValue={user.name}
+            defaultValue={currentUser.name}
           />
           <Input
             onChange={emailChange}
@@ -108,7 +147,7 @@ const UserHeader = {
             type="text"
             placeholder="Your email"
             name="email"
-            defaultValue={user.email}
+            defaultValue={currentUser.email}
           />
           <Input
             onChange={bioChange}
@@ -116,7 +155,7 @@ const UserHeader = {
             type="text"
             placeholder="Your Bio"
             name="Bio"
-            defaultValue={user.Bio}
+            defaultValue={currentUser.bio}
           />
         </Inputs>
       </div>

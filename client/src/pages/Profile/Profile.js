@@ -3,32 +3,41 @@ import { Grid } from "@mui/material";
 import { MdArrowBack } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { H4, Div, Header, Button, Gridd } from "./ProfileStyle";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Border } from "../Home/HomeStyle";
 import UserHeader from "../../components/UserHeader/UserHeader";
-import Tweet from "../../components/Tweets/Tweets";
-
+import Tweet from "../../components/Tweet/Tweet";
+import axios from "../../axios";
+import { Spinner } from "../../components/Tweets/TweetsStyle";
+import { useUserActions } from "../../UserStore";
+import { useUserStore } from "../../UserStore";
 export const Profile = () => {
   const navigate = useNavigate();
-
-  const [userUpdatedData, setUserUpdatedData] = useState({});
+  const currentUser = useUserStore((state) => state.user);
+  const { updateUser } = useUserActions();
   const { username } = useParams();
   const [user, setUser] = useState({});
   const [edit, setedit] = useState(false);
   const [userImage, setUserImage] = useState();
   const [coverImage, setCoverImage] = useState();
+  const [tweetsNum, setTweetsnum] = useState();
   const nameRef = useRef(null);
   const emailRef = useRef(null);
   const bioRef = useRef(null);
+  const [userUpdatedData, setUserUpdatedData] = useState({});
+  const [tweets, setTweets] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const getUserImage = (e) => {
     let file;
     file = e.target.files[0];
+
     if (file) {
       setUserUpdatedData((prev) => {
         return { ...prev, photo: file };
       });
+
       let reader = new FileReader();
       reader.onload = (e) => {
         setUserImage(e.target.result);
@@ -37,7 +46,6 @@ export const Profile = () => {
       reader.readAsDataURL(file);
     }
   };
-
   const getCoverImage = (e) => {
     let file;
     file = e.target.files[0];
@@ -53,7 +61,6 @@ export const Profile = () => {
       reader.readAsDataURL(file);
     }
   };
-
   const nameChange = (e) => {
     setUserUpdatedData((prev) => {
       return { ...prev, name: nameRef.current.value };
@@ -82,49 +89,93 @@ export const Profile = () => {
     setCoverImage(null);
   };
 
+  const saveEdit = async () => {
+    setLoading(true);
+    try {
+      const formData = new FormData();
+      formData.append("name", nameRef.current.value);
+      formData.append("email", emailRef.current.value);
+      formData.append("bio", bioRef.current.value);
+      formData.append("cover", userUpdatedData.cover);
+      formData.append("photo", userUpdatedData.photo);
+      await updateUser({ user: formData });
+      closeEdit();
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    const fetchTweets = async () => {
+      setLoading(true);
+      try {
+        const user = await axios.get(`users/${username}`);
+        setUser(user.data.data.data);
+        const response = await axios.get(`tweets/${username}`);
+        setTweets(response.data.data.data);
+        setTweetsnum(response.data.data.data.length);
+        setLoading(false);
+      } catch (error) {
+        console.error(error);
+        setLoading(false);
+      }
+    };
+    fetchTweets();
+  }, [username]);
+
   return (
     <>
-      <Gridd>
-        <Grid>
+      <Gridd container>
+        <Grid item xs={27}>
           <Div>
             <Button onClick={() => navigate(-1)}>
               <MdArrowBack />
             </Button>
             <Header>
-              <H4>viper</H4>
-              <H4 subHeader>0 tweets</H4>
+              <H4>{currentUser.name}</H4>
+              <H4 subheader="true">{tweetsNum} tweets</H4>
             </Header>
           </Div>
-
-          {edit ? (
-            <UserHeader.EditUserHeader
-              user={user}
-              username={username}
-              closeEdit={closeEdit}
-              getCoverImage={getCoverImage}
-              getUserImage={getUserImage}
-              nameChange={nameChange}
-              emailChange={emailChange}
-              bioChange={bioChange}
-              nameRef={nameRef}
-              emailRef={emailRef}
-              bioRef={bioRef}
-              userImage={userImage}
-              coverImage={coverImage}
-            />
+          {loading ? (
+            <Spinner size={80} thickness={4} />
           ) : (
-            <UserHeader.DefaultUserHeader
-              user={user}
-              username={username}
-              EditProfile={EditProfile}
-            />
-          )}
+            <React.Fragment>
+              {edit ? (
+                <UserHeader.EditUserHeader
+                  user={user}
+                  username={username}
+                  closeEdit={closeEdit}
+                  getCoverImage={getCoverImage}
+                  getUserImage={getUserImage}
+                  nameChange={nameChange}
+                  emailChange={emailChange}
+                  saveEdit={saveEdit}
+                  bioChange={bioChange}
+                  nameRef={nameRef}
+                  emailRef={emailRef}
+                  bioRef={bioRef}
+                  userImage={userImage}
+                  coverImage={coverImage}
+                />
+              ) : (
+                <UserHeader.DefaultUserHeader
+                  user={user}
+                  username={username}
+                  EditProfile={EditProfile}
+                />
+              )}
+              <Border />
 
-          <Border />
-          <Tweet />
+              {tweets?.map((tweet, i) => (
+                <Tweet tweet={tweet} key={i} />
+              ))}
+            </React.Fragment>
+          )}
         </Grid>
       </Gridd>
     </>
   );
 };
+
 export default Profile;

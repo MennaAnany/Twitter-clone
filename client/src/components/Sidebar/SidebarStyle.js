@@ -97,7 +97,6 @@ export const Links = styled(Link)`
 export const Nav = styled.nav`
   padding: 0.5rem;
   height: 100vh;
-  border-right: 1px solid rgba(204, 204, 204, 0.2);
   position: relative;
   margin-bottom: -100vh;
 `;
@@ -116,9 +115,6 @@ export const Img = styled.img`
     font-size: 4.5rem;
     padding: 0.2rem;
   }
-  /* @media (max-width: 700px) {
-    font-size: 2.4rem;
-  } */
 `;
 
 export const P = styled.p`
@@ -137,9 +133,6 @@ export const Span = styled.p`
     font-size: 2.4rem;
     padding: 0.2rem;
   }
-  /* @media (max-width: 700px) {
-
-  } */
 `;
 
 export const Btn = styled.button`
@@ -158,3 +151,5 @@ export const Btn = styled.button`
     padding: 0.2rem;
   }
 `;
+
+export const Border = styled.div``;

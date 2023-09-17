@@ -77,7 +77,7 @@ const DisplayModal = (props) => {
           <div>
             <P title="true">color</P>
           </div>
-          <Div secondry>
+          <Div secondry="true">
             <Form>
               {colors.map((color) => (
                 <ColorDisplay
@@ -93,7 +93,7 @@ const DisplayModal = (props) => {
           <div>
             <P title="true">Background</P>
           </div>
-          <Div secondry>
+          <Div secondry="true">
             <BG>
               <BackgroundDisplay
                 id="LIGHT_MODE"

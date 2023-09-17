@@ -15,7 +15,7 @@ const TrendsItem = (props) => {
       <TrendsItemm>
         <TrendsItemHeader>
           <P secondry="true">{props.header}</P>
-          <Div header="true">
+          <Div head="true">
             <Svg size={15.5} />
           </Div>
         </TrendsItemHeader>

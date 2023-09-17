@@ -1,6 +1,6 @@
 import { Div, Links, Border, P, Icon, Gridd } from "./HomeStyle";
 import AddTweet from "../../components/AddTweet/AddTweet";
-import Tweet from "../../components/Tweets/Tweets";
+import Tweets from "../../components/Tweets/Tweets";
 
 const Home = () => {
   return (
@@ -14,7 +14,7 @@ const Home = () => {
         </Div>
         <Border />
         <AddTweet />
-        <Tweet />
+        <Tweets />
       </Gridd>
     </Gridd>
   );

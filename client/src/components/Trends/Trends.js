@@ -6,7 +6,7 @@ import { Div, H4, Svg, DivButton, Button } from "./TrendsStyle";
 const Trends = () => {
   return (
     <Div>
-      <Div header="true">
+      <Div head="true">
         <H4>Trends for you</H4>
         <Svg />
       </Div>

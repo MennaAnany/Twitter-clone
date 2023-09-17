@@ -12,7 +12,7 @@ export const Div = styled.div(
 
   }
   color: ${(props) =>
-    props.header
+    props.head
       ? props.theme.colors.textSecondry
       : props.theme.colors.textPrimary};
   padding:  0.2rem 0.2rem;
@@ -20,9 +20,9 @@ export const Div = styled.div(
   display: flex;
 
   &:hover {
-    color: ${(props) => (props.header ? props.theme.themeColors.color : "")};
+    color: ${(props) => (props.head ? props.theme.themeColors.color : "")};
     background-color: ${(props) =>
-      props.header ? props.theme.themeColors.hover : ""};
+      props.head ? props.theme.themeColors.hover : ""};
       
   }
 

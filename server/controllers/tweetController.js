@@ -45,10 +45,10 @@ exports.createTweet = catchAsync(async (req, res, next) => {
   }
 
   let newTweet = await Tweet.create(obj);
-  newTweet.content = newTweet._doc.content;
-  newTweet.created = newTweet._doc.created;
+  newTweet.text = newTweet._doc.text;
+  newTweet.created = newTweet._doc.createdAt;
   newTweet.photo = newTweet._doc.photo;
-  newTweet.creator = req.user;
+  newTweet.user = req.user;
 
   res.status(200).json({
     status: 'success',

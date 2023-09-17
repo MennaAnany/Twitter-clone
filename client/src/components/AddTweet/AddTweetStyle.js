@@ -96,7 +96,6 @@ export const TextArea = styled(TextareaAutosize)`
   &::placeholder {
     color: ${({ theme }) => theme.colors.textSecondry};
   }
-  /* width: 100%; */
   background-color: transparent;
   border: none;
   outline: none;

@@ -32,7 +32,10 @@ export const Border = styled.p`
 `;
 export const BorderRight = styled.p`
   border-right: 1px solid rgba(204, 204, 204, 0.2);
-  height: 100vh;
+`;
+
+export const BorderLeft = styled.p`
+  border-left: 1px solid rgba(204, 204, 204, 0.2);
 `;
 
 export const Container = styled.div`

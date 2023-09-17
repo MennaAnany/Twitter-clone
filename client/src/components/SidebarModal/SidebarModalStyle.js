@@ -71,7 +71,7 @@ export const DivPhoto = styled.div`
 export const P = styled.p(
   (props) => `
   color: ${
-    props.Primary
+    props.primary
       ? props.theme.colors.textSecondry
       : props.theme.colors.textPrimary
   };

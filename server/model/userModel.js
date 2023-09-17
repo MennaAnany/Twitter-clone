@@ -38,11 +38,13 @@ const userSchema = new mongoose.Schema({
   },
   photo: {
     type: String,
-    default: '/img/default-avatar-profile-icon-of-social-media-user-vector.jpg'
+    default:
+      'https://res.cloudinary.com/dgikv5itt/image/upload/v1694534816/default-avatar-icon-of-social-media-user-vector_sjuo2a.jpg'
   },
   cover: {
     type: String,
-    default: '/img/fbdefault.png'
+    default:
+      'https://res.cloudinary.com/dgikv5itt/image/upload/v1694534555/fbdefault_mcvae3.png'
   },
 
   bio: {

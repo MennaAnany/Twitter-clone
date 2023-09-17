@@ -30,7 +30,7 @@ export const Div = styled.div`
   width: 26rem;
   position: absolute;
   left: 60rem;
-
+  margin-bottom: 10rem;
   @media (max-width: 1024px) {
     position: absolute;
     left: 10rem;

@@ -1,97 +1,36 @@
-import React, { useState } from "react";
-import {
-  Tweett,
-  TweetLeft,
-  TweetRight,
-  Paragraph,
-  Buttons,
-  Comment,
-  Retweet,
-  Heart,
-  Image,
-  Share,
-  Border,
-  P,
-  Span,
-  Links,
-  Div,
-} from "./TweetsStyle";
-import userImage from "../../img/Viper_icon.webp";
-import TweetModal from "../TweetModal/TweetModal";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useUserActions } from "../../TweetsStore";
+import { useTweetStore } from "../../TweetsStore";
+import Tweet from "../Tweet/Tweet";
+import { Spinner } from "./TweetsStyle";
+const Tweets = () => {
+  const res = useTweetStore((state) => state.res);
+  const tweets = useTweetStore((state) => state.tweet.data);
+  const [loading, setLoading] = useState(true);
+  const { getTweets } = useUserActions();
 
-const Tweet = (props) => {
-  const [showModal, setShowModal] = useState(false);
+  const fetchTweets = async () => {
+    try {
+      await getTweets();
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchTweets();
+  }, [res]);
 
   return (
     <>
-      <Div>
-        <Tweett>
-          <TweetLeft>
-            <Links
-              to={{
-                pathname: `user/${props.handle}`,
-              }}
-            >
-              <img
-                onMouseEnter={() => setShowModal(true)}
-                onMouseLeave={() => setShowModal(false)}
-                alt="user"
-                src={userImage}
-              />
-            </Links>
-            {showModal ? (
-              <TweetModal
-                name={props.name}
-                img={props.userimg}
-                handle={props.email}
-              />
-            ) : null}
-          </TweetLeft>
-          <TweetRight>
-            <Paragraph>
-              <Links
-                to={{
-                  pathname: `user/${props.handle}`,
-                }}
-              >
-                <P style={{ marginBottom: "0.5rem" }}>
-                  Viper <Span>@viper</Span>
-                </P>
-              </Links>
-            </Paragraph>
-
-            {props.tweetimg && (
-              <Link
-                exact
-                to={{
-                  pathname: `/${props.handle}/photo/${props.tweetid}`,
-                  state: {
-                    img: props.tweetimg,
-                  },
-                }}
-              >
-                <Image
-                  style={{
-                    backgroundImage: `url(${props.tweetimg})`,
-                  }}
-                ></Image>
-              </Link>
-            )}
-            {props.children}
-
-            <Buttons>
-              <Comment />
-              <Retweet />
-              <Heart />
-              <Share />
-            </Buttons>
-          </TweetRight>
-        </Tweett>
-      </Div>
-      <Border />
+      {loading ? (
+        <Spinner size={80} thickness={4} />
+      ) : (
+        tweets?.map((tweet, i) => <Tweet tweet={tweet} key={i} />)
+      )}
     </>
   );
 };
 
-export default Tweet;
+export default Tweets;

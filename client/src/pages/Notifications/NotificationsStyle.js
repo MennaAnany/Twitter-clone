@@ -40,9 +40,7 @@ export const Div = styled.div`
 `;
 export const DivHeader = styled.div`
   background-color: ${({ theme }) => theme.colors.bgPrimary};
-
   color: ${({ theme }) => theme.themeColors.color};
-
   display: flex;
   justify-content: space-between;
   align-items: center;

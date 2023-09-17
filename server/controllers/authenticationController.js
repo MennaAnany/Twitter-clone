@@ -13,7 +13,7 @@ const signToken = id => {
 const createToken = (user, statusCode, req, res) => {
   const token = signToken(user._id);
 
-  res.cookie('tokenCookie', token, {
+  res.cookie('jwt', token, {
     expires: new Date(
       Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
     ),
@@ -65,10 +65,11 @@ exports.signin = catchAsync(async (req, res, next) => {
 });
 
 exports.signout = (req, res) => {
-  res.cookie('jwt', 'loggedout', {
-    expires: new Date(Date.now() + 10 * 1000),
-    httpOnly: true
-  });
+  // res.cookie('jwt', 'loggedout', {
+  //   expires: new Date(Date.now() + 10 * 1000),
+  //   httpOnly: true
+  // });
+  res.clearCookie('jwt');
   res.status(200).json({ status: 'success' });
 };
 
@@ -117,14 +118,3 @@ exports.protect = async (req, res, next) => {
 
   next();
 };
-
-// exports.restricTo = (...roles) => {
-//   return (req, res, next) => {
-//     if (!roles.includes(req.user.role)) {
-//       return next(
-//         new AppError('You do not have permission to perform this action', 403)
-//       );
-//     }
-//     next();
-//   };
-// };

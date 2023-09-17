@@ -16,6 +16,7 @@ export const Input = styled.input(
   &:focus {
     border: 1px solid ${theme.themeColors.color};
   }
+  
 `
 );
 
@@ -25,9 +26,6 @@ export const Div = styled.div`
 
 export const SearchbarDiv = styled.div`
   padding: 1.5rem;
-  /* @media (max-width: 1024px) {
-    display: none;
-  } */
 `;
 
 export const Form = styled.div`

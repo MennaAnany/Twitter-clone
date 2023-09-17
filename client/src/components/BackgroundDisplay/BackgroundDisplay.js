@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Background,
-  Name,
-  Input,
-  Label,
-  Span,
-  Checked,
-} from "./BackgroundDisplayStyle";
+import { Background, Name, Input, Label } from "./BackgroundDisplayStyle";
 
 const BackgroundDisplay = (props) => {
   return (

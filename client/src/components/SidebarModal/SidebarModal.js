@@ -6,7 +6,6 @@ import { HiOutlineExternalLink } from "react-icons/hi";
 import { FiHelpCircle, FiSettings } from "react-icons/fi";
 import { BiEdit } from "react-icons/bi";
 import { IoIosPulse } from "react-icons/io";
-import userImage from "../../img/Viper_icon.webp";
 import {
   Li,
   Ul,
@@ -18,17 +17,30 @@ import {
   Span,
 } from "./SidebarModalStyle";
 import Container from "../container/Container";
+import { signout } from "../../UserStore";
+import { useUserStore } from "../../UserStore";
+
 const SidebarModal = () => {
+  const currentUser = useUserStore((state) => state.user);
+
+  const handleLogout = () => {
+    try {
+      signout();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <React.Fragment>
       <SidebarOptions>
         <Container>
           <Span>
             <DivPhoto>
-              <img alt="user" src={userImage} />
+              <img alt="user" src={currentUser.photo} />
 
-              <P>viper</P>
-              <P Primary>@Viper_valorant</P>
+              <P>{currentUser.username}</P>
+              <P primary="true">{currentUser.email}</P>
             </DivPhoto>
             <Border />
             <Ul>
@@ -97,7 +109,8 @@ const SidebarModal = () => {
               </Ul>
             </Link>
             <Border />
-            <Ul>
+
+            <Ul onClick={handleLogout}>
               <Li>Log out</Li>
             </Ul>
           </Span>

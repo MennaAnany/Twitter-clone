@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  Route,
-  RouterProvider,
-  Routes,
-  createBrowserRouter,
-} from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Signup from "./pages/authentication/signup/signup";
 import Signin from "./pages/authentication/Login/Login";
 import Home from "./pages/Home/Home";
@@ -14,6 +9,7 @@ import Container from "@mui/material/Container";
 import styled from "styled-components";
 import Layout from "./components/Layout/Layout";
 import DisplayModal from "./components/DisplayModal/DisplayModal";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 const Div = styled.div`
   background-color: ${({ theme }) => theme.colors.bgPrimary};
   min-height: 100vh;
@@ -29,23 +25,47 @@ const router = createBrowserRouter([
     element: <Signin />,
   },
   {
-    element: <Layout />,
+    element: (
+      <ProtectedRoute>
+        <Layout />
+      </ProtectedRoute>
+    ),
     children: [
       {
         path: "/home",
-        element: <Home />,
+        element: (
+          <ProtectedRoute>
+            <Home />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/notifications",
-        element: <Notifications />,
+        element: (
+          <ProtectedRoute>
+            <Notifications />
+          </ProtectedRoute>
+        ),
       },
       {
-        path: "/profile",
-        element: <Profile />,
+        path: "users/:username",
+        element: (
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/display",
-        element: <DisplayModal />,
+        element: (
+          <ProtectedRoute>
+            <DisplayModal />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/",
+        element: <Signin />,
       },
     ],
   },

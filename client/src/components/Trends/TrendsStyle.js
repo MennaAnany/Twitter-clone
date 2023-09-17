@@ -8,19 +8,15 @@ export const Border = styled.div`
 export const Div = styled.div`
   background-color: ${({ theme }) => theme.colors.bgSecondry};
   border-radius: 1.5rem;
-  color: ${(props) => (props.header ? props.theme.color : "")};
-  display: ${(props) => (props.header ? "flex" : "")};
-  justify-content: ${(props) => (props.header ? "space-between" : "")};
-  align-items: ${(props) => (props.header ? "center" : "")};
+  color: ${(props) => (props.head ? props.theme.color : "")};
+  display: ${(props) => (props.head ? "flex" : "")};
+  justify-content: ${(props) => (props.head ? "space-between" : "")};
+  align-items: ${(props) => (props.head ? "center" : "")};
 
   padding: 0.3rem 0.1rem;
-  margin-left: ${(props) => (props.header ? "" : "4rem")};
+  margin-left: ${(props) => (props.head ? "" : "4rem")};
   overflow: hidden;
   width: 31.5rem;
-
-  /* @media (max-width: 1024px) {
-    display: none;
-  } */
 `;
 
 export const H4 = styled.h4`

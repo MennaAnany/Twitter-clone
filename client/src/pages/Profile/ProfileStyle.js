@@ -1,17 +1,17 @@
 import styled from "styled-components";
 import { Grid } from "@mui/material";
 
-export const H4 = styled.p(
+export const H4 = styled.span(
   (props) => `
   color: ${
-    props.subHeader
+    props.subheader
       ? props.theme.colors.textSecondry
       : props.theme.colors.textPrimary
   };
 
 
-  font-size: ${props.subHeader ? "1.5rem" : "2rem"};
-  font-weight: ${props.subHeader ? "" : "700"};
+  font-size: ${props.subheader ? "1.5rem" : "2rem"};
+  font-weight: ${props.subheader ? "" : "700"};
   margin-top: 0.4rem;
   display:flex;
   flex-direction:column;
@@ -25,11 +25,11 @@ export const Gridd = styled(Grid)`
   }
 `;
 
-export const Div = styled.p`
+export const Div = styled.div`
   display: flex;
   align-items: center;
 `;
-export const Header = styled.p`
+export const Header = styled.span`
   display: flex;
   flex-direction: column;
   padding: 1rem;

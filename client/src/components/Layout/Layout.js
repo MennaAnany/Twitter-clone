@@ -5,7 +5,7 @@ import Trends from "../../components/Trends/Trends";
 import Suggested from "../../components/Suggested/Suggested";
 import { Grid } from "@mui/material";
 import React from "react";
-import { BorderRight } from "../../pages/Home/HomeStyle";
+import { BorderRight, BorderLeft } from "../../pages/Home/HomeStyle";
 import { Div, Grid2 } from "./LayoutStyle";
 
 const Layout = () => {
@@ -15,6 +15,7 @@ const Layout = () => {
         <Grid>
           <Sidebar />
         </Grid>
+        <BorderLeft />
         <Outlet />
         <BorderRight />
         <Grid2>

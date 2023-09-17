@@ -5,15 +5,16 @@ const tweetSchema = new mongoose.Schema({
     type: mongoose.Schema.ObjectId,
     ref: 'User'
   },
-  created: {
+  createdAt: {
     type: Date,
     default: Date.now
   },
-  content: {
-    type: String,
-    required: true
+  text: {
+    type: String
   },
-  photo: String,
+  photo: {
+    type: String
+  },
   video: String
 });
 

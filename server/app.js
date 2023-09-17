@@ -19,7 +19,7 @@ const cors = require('cors');
 
 // Implement CORS
 if (process.env.NODE_ENV === 'development') {
-  app.use(cors({ origin: 'http://localhost:3001', credentials: true }));
+  app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 } else {
   app.use(cors({ credentials: true }));
 }

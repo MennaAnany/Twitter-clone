@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Input from "../../../components/Input/Input/Input";
 import { Button, Form, P, SignLink, Logo, Error } from "../AuthStyle";
-import { useNavigate } from "react-router-dom";
-// import { Error2 } from "../AuthStyle";
+import { Error2 } from "../AuthStyle";
 import { useUserActions } from "../../../UserStore";
+import { useNavigate } from "react-router-dom";
 // import { useError } from "../../../UserStore";
-// import { useUserActions } from "../../../UserStore";
+import { useUserStore } from "../../../UserStore";
 const Signup = () => {
   const { signup } = useUserActions();
-  // const { setError } = useUserActions();
-
   const [username, setUsername] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -21,7 +19,8 @@ const Signup = () => {
   const [passwordError, setPasswordError] = useState("");
   const [passwordConfirmationError, setPasswordConfirmationError] =
     useState("");
-
+  const currentUser = useUserStore((state) => state.user.email);
+  const error = useUserStore((state) => state.signupError);
   const navigate = useNavigate();
 
   const onSubmit = (e) => {
@@ -83,16 +82,18 @@ const Signup = () => {
         user: { username, name, email, password, passwordConfirmation },
         isValid,
       });
-      navigate("/home");
     }
   };
+  useEffect(() => {
+    if (currentUser) navigate("/home");
+  }, [currentUser]);
   return (
     <div>
       <React.Fragment>
         <Form>
           <Logo />
           <P>Sign up to Twitter</P>
-          {/* {error ? <Error2>{error}</Error2> : null} */}
+          {error ? <Error2>{error}</Error2> : null}
           <Input
             type="text"
             placeholder="Username"

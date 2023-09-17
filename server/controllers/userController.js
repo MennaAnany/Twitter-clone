@@ -41,7 +41,7 @@ exports.resizeUserCover = catchAsync(async (req, res, next) => {
   req.files.cover[0].filename = `user-cover-${req.user.id}-${Date.now()}.jpeg`;
 
   await sharp(req.files.cover[0].buffer)
-    .resize({ width: 1500, height: 500 })
+    .resize({ width: 354, height: 174 })
     .toFormat('jpeg')
     .jpeg({ quality: 90 })
     .toFile(`img/${req.files.cover[0].filename}`);
@@ -73,7 +73,7 @@ exports.updateMe = catchAsync(async (req, res, next) => {
   }
 
   // 2) Filtered out unwanted fields names that are not allowed to be updated
-  const filteredBody = filterObj(req.body, 'name', 'username', 'bio');
+  const filteredBody = filterObj(req.body, 'name', 'username', 'bio', 'email');
 
   if (req.files) {
     if (req.files.cover) {

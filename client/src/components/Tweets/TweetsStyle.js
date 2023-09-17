@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { FiMessageSquare, FiRepeat, FiHeart, FiShare } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export const Tweett = styled.div`
   display: flex;
@@ -30,7 +31,7 @@ export const Buttons = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-top: 4rem;
+  margin-top: 2rem;
   gap: 10rem;
   svg {
     color: ${({ theme }) => theme.colors.textSecondry};
@@ -89,7 +90,9 @@ export const Image = styled.div`
   height: 30rem;
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
   border-radius: 1rem;
+  margin-top: 2rem;
 `;
 
 export const P = styled.p`
@@ -119,12 +122,33 @@ export const Div = styled.div`
   background-color: transparent;
   align-items: flex-start;
   padding: 1.2rem;
+  border-bottom: 1px solid rgba(204, 204, 204, 0.2);
 
   &:hover {
-    background-color: ${({ theme }) => theme.bgHover};
+    background-color: ${({ theme }) => theme.colors.bgHover};
   }
 `;
 
-export const Border = styled.p`
-  border-bottom: 1px solid rgba(204, 204, 204, 0.2);
+export const Text = styled.p`
+  color: ${({ theme }) => theme.colors.textPrimary};
+  margin-top: 1.4rem;
+  font-size: 1.6rem;
+  font-family: "Roboto";
+  text-decoration: none;
+
+  @media (max-width: 700px) {
+    font-size: 1.3rem;
+  }
+`;
+
+export const Spinner = styled(CircularProgress)`
+  margin-left: 28rem;
+  margin-top: 20rem;
+  border-radius: 50%;
+`;
+
+export const Spinnerr = styled(CircularProgress)`
+  margin-left: 90rem;
+  margin-top: 10rem;
+  border-radius: 50%;
 `;

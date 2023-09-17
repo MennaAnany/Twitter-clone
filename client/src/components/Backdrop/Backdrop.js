@@ -1,20 +1,12 @@
 import React from "react";
-import styled from "styled-components";
+import { Backdropp } from "./BackdropStyle";
 
 const Backdrop = (props) => {
-  const Backdrop = styled.div`
-    position: fixed;
-    z-index: 10;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  `;
   return (
-    <Backdrop
+    <Backdropp
       style={{ backgroundColor: `${props.bgColor}` }}
       onClick={props.clicked}
-    ></Backdrop>
+    ></Backdropp>
   );
 };
 
