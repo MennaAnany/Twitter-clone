@@ -93,6 +93,7 @@ app.use('/api/v1/tweets', tweetRouter);
 // app.all('*', (req, res, next) => {
 //   next(new AppError(`Cant find ${req.originalUrl} on this server!`, 404));
 // });
+
 app.all('*', (req, res, next) => {
   res.sendFile(`${__dirname}/build/index.html`);
 });
