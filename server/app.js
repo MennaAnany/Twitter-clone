@@ -7,6 +7,8 @@ const xss = require('xss-clean');
 const userRouter = require('../server/routes/userRouter');
 const tweetRouter = require('../server/routes/tweetRouter');
 
+const path = require('path');
+
 // const rateLimit = require('express-rate-limit');
 // const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
@@ -80,6 +82,8 @@ app.use(xss());
 //     ]
 //   })
 // );
+
+// Serving static files
 app.use(express.static(`${__dirname}/build`));
 app.use(express.static(path.join(__dirname, 'data')));
 
@@ -87,12 +91,6 @@ app.use(express.static(path.join(__dirname, 'data')));
 
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/tweets', tweetRouter);
-
-// Handling un-handled routes
-// ('*') : for any url
-// app.all('*', (req, res, next) => {
-//   next(new AppError(`Cant find ${req.originalUrl} on this server!`, 404));
-// });
 
 app.all('*', (req, res, next) => {
   res.sendFile(`${__dirname}/build/index.html`);
